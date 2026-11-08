@@ -1,0 +1,19 @@
+[Unit]
+Description=ProofBox API (agent loop)
+After=network-online.target docker.service
+Requires=docker.service
+
+[Service]
+User=proofbox
+Group=docker
+WorkingDirectory=/opt/proofbox/backend
+EnvironmentFile=/etc/proofbox.env
+ExecStart=/opt/proofbox/backend/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

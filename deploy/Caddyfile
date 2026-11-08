@@ -1,0 +1,16 @@
+# Caddy gives you HTTPS for free. Replace proofbox.example.com with your domain,
+# or use the VM IP with ":80" for a quick public demo.
+proofbox.example.com {
+	encode gzip
+
+	# API and live event stream go straight to FastAPI. No buffering for SSE.
+	handle /api/* {
+		reverse_proxy 127.0.0.1:8000 {
+			flush_interval -1
+		}
+	}
+
+	handle {
+		reverse_proxy 127.0.0.1:3000
+	}
+}

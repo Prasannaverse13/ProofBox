@@ -1,0 +1,3 @@
+INVOICE {number}
+Bill to: {customer}
+Total: {total}

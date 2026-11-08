@@ -1,0 +1,16 @@
+[Unit]
+Description=ProofBox web (Next.js)
+After=network-online.target
+
+[Service]
+User=proofbox
+WorkingDirectory=/opt/proofbox/frontend
+Environment=NODE_ENV=production
+Environment=PROOFBOX_API_URL=http://127.0.0.1:8000
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,4 +1,4 @@
-# ProofBox
+﻿# ProofBox
 
 **Bugs with proof, run in a box that cannot hurt you.**
 
@@ -61,27 +61,27 @@ flowchart LR
 sequenceDiagram
     participant UI as Console
     participant API as FastAPI (Vultr VM)
-    participant BOX as Docker box
+    participant SBX as Docker box
     participant LLM as Vultr Serverless Inference
     UI->>API: POST /api/jobs (sample or git URL)
     API->>API: fetch repo to VM (copied, never run here)
-    API->>BOX: start baseline box, run repo tests
-    BOX-->>API: output, exit code, contained attacks
-    API->>BOX: destroy baseline box
-    API->>BOX: start clean audit box
+    API->>SBX: start baseline box, run repo tests
+    SBX-->>API: output, exit code, contained attacks
+    API->>SBX: destroy baseline box
+    API->>SBX: start clean audit box
     loop until finish or step limit
         API->>LLM: messages + tool results
         LLM-->>API: next action (read_file, run, prove, fix, finish)
         API->>API: policy.check(command)
         alt allowed
-            API->>BOX: run action
-            BOX-->>API: stdout, exit code
+            API->>SBX: run action
+            SBX-->>API: stdout, exit code
         else denied
             API-->>LLM: denial reason, pick a safe path
         end
         API-->>UI: SSE event (hash chained)
     end
-    API->>BOX: destroy audit box
+    API->>SBX: destroy audit box
     API->>API: sign chain head (HMAC)
     API-->>UI: report (MD / SARIF / JSON)
 ```

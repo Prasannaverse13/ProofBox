@@ -277,7 +277,7 @@ All settings are environment variables. See `deploy/proofbox.env.example`.
 | `vuln-vault` | Solidity | A vault with reentrancy and an open `setOwner`. Proved with Foundry, offline. |
 | `notes-api` | Node.js | An `alg: none` token bypass and a pagination bug. |
 
-Verified end to end through the real API in demo mode: 6 proven bugs, 6 verified fixes, 6 attacks contained on the hostile sample, 1 install denied by policy, every audit chain valid and signed, 0 leftover boxes.
+Verified end to end through the real API in demo mode: 2 proven bugs and 2 verified fixes per sample (6 and 6 across all three), 6 attacks contained on the hostile sample, 1 install denied by policy, every audit chain valid and signed, 0 leftover boxes.
 
 ## Demo mode and live mode
 

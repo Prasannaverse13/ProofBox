@@ -1,0 +1,1 @@
+{"ok":true,"mode":"demo","model":"kimi-k2-instruct","inference":"https://api.vultrinference.com/v1","sandbox":{"docker":true,"image_ready":true,"image":"proofbox-sandbox:latest","runtime":"runc"},"limits":{"network":"none","memory":"512m","cpus":"1","pids":128,"command_timeout_s":30}}
